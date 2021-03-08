@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -16,7 +17,7 @@ export default class Navbar extends Component {
     this.closeSnackbar = this.closeSnackbar.bind(this);
   }
   handleFormatChange(e) {
-    this.setState({ format: e.target.value, open:true });
+    this.setState({ format: e.target.value, open: true });
     this.props.handleChange(e.target.value);
   }
   closeSnackbar() {
@@ -28,7 +29,7 @@ export default class Navbar extends Component {
     return (
       <header className="Navbar">
         <div className="logo">
-          <a href="/">reactcolorpicker</a>
+          <Link to="/">reactcolorpicker</Link>
         </div>
         <div className="slider-container">
           <span>Level: {level}</span>
@@ -53,7 +54,11 @@ export default class Navbar extends Component {
           anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
           open={this.state.open}
           autoHideDuration={3000}
-          message={<span id="message-id">Format Changed to {format.toUpperCase()}!</span>}
+          message={
+            <span id="message-id">
+              Format Changed to {format.toUpperCase()}!
+            </span>
+          }
           ContentProps={{ "aria-describedby": "message-id" }}
           onClose={this.closeSnackbar}
           action={[
